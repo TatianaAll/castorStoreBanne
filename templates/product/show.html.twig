@@ -1,0 +1,49 @@
+{# templates/product/show.html.twig — VERSION AUTONOME #}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ product.name }}</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    .wf-container { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .wf-panel { background:#f1f3f5; border-radius:.75rem; padding:2rem; }
+    .wf-img-600 { width:100%; max-width:600px; aspect-ratio:1/1; object-fit:cover; border-radius:.5rem; }
+    @supports not (aspect-ratio:1/1) { .wf-img-600{height:600px;} }
+  </style>
+</head>
+<body>
+<main class="container wf-container">
+
+  <div class="row g-4 align-items-start">
+    <div class="col-12 col-lg-6 d-flex justify-content-center">
+      {% if product.image %}
+        <img src="{{ asset('uploads/' ~ product.image) }}" alt="{{ product.name }}" class="wf-img-600">
+      {% else %}
+        <div class="wf-img-600 bg-secondary text-white d-flex align-items-center justify-content-center w-100">
+          Pas d’image
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="wf-panel">
+        <h1 class="h3 mb-3">{{ product.name }}</h1>
+        <p class="lead fw-semibold mb-4">{{ product.price|number_format(2, '.', ',') }} €</p>
+        <p class="mb-4">{{ product.description }}</p>
+
+        <div class="d-flex gap-2">
+          <a href="#" class="btn btn-success">Acheter</a>
+          <a href="#" class="btn btn-outline-primary">Ajouter au panier</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
