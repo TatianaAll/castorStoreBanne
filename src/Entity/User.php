@@ -46,6 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user_id', cascade: ['persist', 'remove'])]
     private ?Basket $basket = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $zip_code = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $town = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -189,6 +195,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->basket = $basket;
+
+        return $this;
+    }
+
+    public function getZipCode(): ?string
+    {
+        return $this->zip_code;
+    }
+
+    public function setZipCode(?string $zip_code): static
+    {
+        $this->zip_code = $zip_code;
+
+        return $this;
+    }
+
+    public function getTown(): ?string
+    {
+        return $this->town;
+    }
+
+    public function setTown(?string $town): static
+    {
+        $this->town = $town;
 
         return $this;
     }
