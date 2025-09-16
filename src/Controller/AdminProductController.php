@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Product;
@@ -10,10 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class AdminProductController extends AbstractController {
+class AdminProductController extends AbstractController
+{
 
-  #[Route(path: '/admin/product/create', name: 'product_create', methods:['POST', 'GET'])]
-  public function createProduct(Request $request, EntityManagerInterface $entityManager): Response {
+  #[Route(path: '/admin/product/create', name: 'product_create', methods: ['POST', 'GET'])]
+  public function createProduct(Request $request, EntityManagerInterface $entityManager): Response
+  {
     //new instance of product
     $product = new Product();
 
@@ -27,23 +30,28 @@ class AdminProductController extends AbstractController {
       //entity manager is the ORM manager and permit to persist then flush in DB
       $entityManager->persist($product);
       $entityManager->flush();
-      
+
       $this->addFlash('success', "Nouveau produit enregistré");
       return $this->redirectToRoute('admin_dashboard');
     }
     $formView = $formCreateProduct->createView();
-    return $this->render('admin/product/create.html.twig', ["formView"=>$formView]);
+    return $this->render('admin/product/create.html.twig', ["formView" => $formView]);
   }
 
-  #[Route(path: 'admin/product/allProducts', name: 'all_products', methods:['GET'])]
-  public function getAllProducts(ProductRepository $productRepository) : Response {
+  #[Route(path: 'admin/product/allProducts', name: 'all_products', methods: ['GET'])]
+  public function getAllProducts(ProductRepository $productRepository): Response
+  {
     $products = $productRepository->findAll();
     return $this->render('admin/product/list.html.twig', ['products' => $products]);
   }
 
-  #[Route(path: 'admin/product/{id}/update', name:'update_product', requirements: ["id" => "\d+"], methods: ["GET", "POST"])]
-  public function updateProduct(int $id,ProductRepository $productRepository, Request $request, 
-  EntityManagerInterface $entityManager): Response {
+  #[Route(path: 'admin/product/{id}/update', name: 'update_product', requirements: ["id" => "\d+"], methods: ["GET", "POST"])]
+  public function updateProduct(
+    int $id,
+    ProductRepository $productRepository,
+    Request $request,
+    EntityManagerInterface $entityManager
+  ): Response {
     $productToUpdate = $productRepository->find($id);
 
     if (!$productToUpdate) {
@@ -62,11 +70,29 @@ class AdminProductController extends AbstractController {
       //entity manager is the ORM manager and permit to persist then flush in DB
       $entityManager->persist($productToUpdate);
       $entityManager->flush();
-      
+
       $this->addFlash('success', "Modification du produit enregistrée");
       return $this->redirectToRoute('admin_dashboard');
     }
     $formView = $formUpdateProduct->createView();
     return $this->render('admin/product/update.html.twig', ["formView" => $formView, "productToUpdate" => $productToUpdate]);
+  }
+
+  #[Route(path: '/admin/product/{id}/delete', name: 'delete_product', requirements: ['id' => "\d+"], methods: ['GET'])]
+  public function deleteProduct(int $id, ProductRepository $productRepository, EntityManagerInterface $entityManager): Response
+  {
+    $productToDelete = $productRepository->find($id);
+
+    if (!$productToDelete) {
+      $this->addFlash("error", "Ce produit exceptionnel n'existe pas :(");
+      return $this->redirectToRoute("all_products");
+    }
+
+    $entityManager->remove($productToDelete);
+    $entityManager->flush();
+
+    $this->addFlash("success", "Produit supprimé");
+
+    return $this->redirectToRoute("admin_dashboard");
   }
 }
