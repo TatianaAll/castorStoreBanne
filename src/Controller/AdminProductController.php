@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,40 @@ class AdminProductController extends AbstractController {
     }
     $formView = $formCreateProduct->createView();
     return $this->render('admin/product/create.html.twig', ["formView"=>$formView]);
+  }
 
+  #[Route(path: 'admin/product/allProducts', name: 'all_products', methods:['GET'])]
+  public function getAllProducts(ProductRepository $productRepository) : Response {
+    $products = $productRepository->findAll();
+    return $this->render('admin/product/list.html.twig', ['products' => $products]);
+  }
+
+  #[Route(path: 'admin/product/{id}/update', name:'update_product', requirements: ["id" => "\d+"], methods: ["GET", "POST"])]
+  public function updateProduct(int $id,ProductRepository $productRepository, Request $request, 
+  EntityManagerInterface $entityManager): Response {
+    $productToUpdate = $productRepository->find($id);
+
+    if (!$productToUpdate) {
+      $this->addFlash("error", "Ce produit exceptionnel n'existe pas :(");
+      return $this->redirectToRoute("all_products");
+    }
+
+    //make:form ProductType before, to create a form based on the entity Product
+    //formCreateProduct is an instance of the form create with productType
+    $formUpdateProduct = $this->createForm(ProductType::class, $productToUpdate);
+
+    //with handle request we get the POST request and interprete
+    $formUpdateProduct->handleRequest($request);
+
+    if ($formUpdateProduct->isSubmitted() && $formUpdateProduct->isValid()) {
+      //entity manager is the ORM manager and permit to persist then flush in DB
+      $entityManager->persist($productToUpdate);
+      $entityManager->flush();
+      
+      $this->addFlash('success', "Modification du produit enregistrée");
+      return $this->redirectToRoute('admin_dashboard');
+    }
+    $formView = $formUpdateProduct->createView();
+    return $this->render('admin/product/update.html.twig', ["formView" => $formView, "productToUpdate" => $productToUpdate]);
   }
 }
