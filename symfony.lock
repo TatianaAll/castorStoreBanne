@@ -81,6 +81,7 @@
             "ref": "7d86a6723f4a623f59e2bf966b6aad2fc461d36b"
         },
         "files": [
+            "config/packages/csrf.yaml"
             "./config/packages/csrf.yaml"
         ]
     },
@@ -185,7 +186,7 @@
             "ref": "8c1c4e28d26a124b0bb273f537ca8ce443472bfd"
         },
         "files": [
-            "./config/packages/validator.yaml"
+            "config/packages/validator.yaml"
         ]
     },
     "symfonycasts/reset-password-bundle": {

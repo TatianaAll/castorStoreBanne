@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des produits{% endblock %}
+
+{% block navbar %}
+    {% include 'admin/_navbarAdmin.html.twig' %}
+{% endblock %}
+
+{% block body %}
+<section class="container">
+  <h1>Liste des utilisateurs et clients du site</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom du client</th>
+        <th>Email</th>
+        <th>Adresse</th>
+        <th>Ville</th>
+        <th>Code postal</th>
+        <th>Numéro de téléphone</th>
+        <th>Supprimer le client définitivement</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+    <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.address}}</td>
+      <td>{{user.town}}</td>
+      <td>{{user.zip_code}}</td>
+      <td>{{user.phone}}</td>
+      <td><a href="{{path('user_delete', {id:user.id}) }}">Supprimer</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% endblock %}

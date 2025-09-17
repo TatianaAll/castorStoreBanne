@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %} {% block title %}Administrateur{% endblock %} {%
+block navbar %} {% include 'admin/_navbarAdmin.html.twig' %} {% endblock %} {%
+block body %}
+<section class="container">
+  <h1>Bienvenue sur le dashboard administrateur</h1>
+    <div>
+        <div>
+          Nombre de consommateur : {{numberUser}}
+          <a href="{{path('all_users')}}">Voir tous les utilisateurs</a>
+        </div>
+        <div>Nombre de produits proposés : {{numberProduct}}
+          <a href="{{path('all_products')}}">Voir tous les produits</a>
+        </div>
+        <div>Ajouter un produit :
+          <a href="{{path('product_create')}}">ici</a>
+        </div>
+        <div></div>
+    </div>
+</section>
+
+{% endblock %}
