@@ -2,6 +2,8 @@
 
 {% block title %}Accueil{% endblock %}
 
+
+
 {% block body %}
 <div class="container mt-5">
     <h1>Accueil</h1>
@@ -20,5 +22,9 @@
         <p>Vous n'êtes pas connecté.</p>
         <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
     {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+    </br><a href="{{ path('app_admin') }}">Admin</a></li>
+    {% endif %}
 </div>
 {% endblock %}
+
