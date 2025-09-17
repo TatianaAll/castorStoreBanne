@@ -20,15 +20,12 @@ class BasketController extends AbstractController
   //pour gerer le basket il faut une date de creation et un date d'update donc modifier la table basket avec ces 2 colonnes
 
 
-  #[Route(path: '/basket/{id_user}/{id_product}', name: 'basket', requirements: ["id_user" => "\d+", "id_product" => "\d+"])]
+  #[Route(path: '/basket/{id_user}/{id_product}', name: 'create_basket', requirements: ["id_user" => "\d+", "id_product" => "\d+"])]
   function createBasket(
-    EntityManagerInterface $entityManager,
-    BasketRepository $basketRepository,
-    int $id_product,
-    int $id_user,
-    UserRepository $userRepository,
-    ProductRepository $productRepository
-  ): Response {
+    EntityManagerInterface $entityManager, BasketRepository $basketRepository,
+    int $id_product, int $id_user,
+    UserRepository $userRepository, ProductRepository $productRepository): Response {
+
     //je cherche mon produit et mon User dans la BD
     $product = $productRepository->find($id_product);
     $user = $userRepository->find($id_user);
@@ -58,6 +55,8 @@ class BasketController extends AbstractController
       'Nouveau panier créé pour l\'utilisateur {$id_user}'
     );
 
-    return $this->redirectToRoute('home');
+    return $this->redirectToRoute('product_show', ['id'=>$id_product]);
   }
+
+
 }

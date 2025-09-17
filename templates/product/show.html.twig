@@ -52,7 +52,7 @@
 
         <div class="d-flex gap-2 flex-wrap">
           <a href="#" class="btn btn-success">Acheter</a>
-          <a href="#" class="btn btn-outline-primary">Ajouter au panier</a>
+          <a href="{{path('create_basket', {id_product:product.id, id_user:app.user.id})}}" class="btn btn-outline-primary">Ajouter au panier</a>
         </div>
       </div>
     </div>
