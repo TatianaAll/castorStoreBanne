@@ -72,7 +72,7 @@ class AdminProductController extends AbstractController
       $entityManager->flush();
 
       $this->addFlash('success', "Modification du produit enregistrée");
-      return $this->redirectToRoute('admin_dashboard');
+      return $this->redirectToRoute('all_products');
     }
     $formView = $formUpdateProduct->createView();
     return $this->render('admin/product/update.html.twig', ["formView" => $formView, "productToUpdate" => $productToUpdate]);
@@ -93,6 +93,6 @@ class AdminProductController extends AbstractController
 
     $this->addFlash("success", "Produit supprimé");
 
-    return $this->redirectToRoute("admin_dashboard");
+    return $this->redirectToRoute("all_products");
   }
 }

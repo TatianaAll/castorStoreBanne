@@ -1,15 +1,36 @@
 {% extends 'base.html.twig' %}
 {% block title %}Liste des produits{% endblock %}
 
+{% block navbar %}
+    {% include 'admin/_navbarAdmin.html.twig' %}
+{% endblock %}
+
 {% block body %}
 <section>
-  <ul>
-  {% for product in products %}
-    <li>
-      {{product.name}}
-    </li>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom du produit</th>
+        <th>Quantité en stock</th>
+        <th>Prix</th>
+        <th>Mettre à jour le produit</th>
+        <th>Supprimer le produit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+    <tr>
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.quantity}}</td>
+      <td>{{product.price}}</td>
+      <td><a href="{{path('update_product', {id:product.id}) }}">Mettre à jour</a></td>
+      <td><a href="{{path('delete_product', {id:product.id}) }}">Supprimer</a></td>
+    </tr>
     {% endfor %}
-  </ul>
+    </tbody>
+  </table>
 </section>
 
 {% endblock %}
