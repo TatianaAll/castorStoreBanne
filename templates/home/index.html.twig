@@ -54,7 +54,7 @@
                   <div class="card-body d-flex flex-column">
                     <h3 class="h6 mb-2">{{ product.name }}</h3>
                     <div class="mt-auto fw-semibold">{{ product.price|number_format(2, '.', ',') }} €</div>
-                    <a href="{{ path('product_show', { id: product.id }) }}" class="btn btn-primary btn-sm mt-2">Voir le produit</a>
+                    {# <a href="{{ path('product_show', { id: product.id }) }}" class="btn btn-primary btn-sm mt-2">Voir le produit</a> #}
                   </div>
                 </div>
               </div>

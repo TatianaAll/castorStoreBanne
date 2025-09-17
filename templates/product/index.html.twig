@@ -1,4 +1,3 @@
-{# templates/product/index.html.twig — VERSION AUTONOME #}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,13 +29,7 @@
     <div class="card mb-4 shadow-sm border-0">
       <div class="row g-0 align-items-center">
         <div class="col-12 col-md-5 col-lg-4 p-3">
-          {% if product.image %}
-            <img src="{{ asset('uploads/' ~ product.image) }}" class="wf-img-400 w-100" alt="{{ product.name }}">
-          {% else %}
-            <div class="wf-img-400 bg-secondary text-white d-flex align-items-center justify-content-center w-100">
-              Pas d’image
-            </div>
-          {% endif %}
+            <img src="{{ asset(product.image) }}" class="wf-img-400 w-100" alt="{{ product.name }}">
         </div>
         <div class="col-12 col-md-7 col-lg-8">
           <div class="card-body">

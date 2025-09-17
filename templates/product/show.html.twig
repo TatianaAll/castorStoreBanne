@@ -1,4 +1,4 @@
-{# templates/product/show.html.twig — VERSION AUTONOME #}
+{# templates/product/show.html.twig — VERSION AVEC BOUTONS + TEXTE AGRANDIS #}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,28 +8,49 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <style>
+  /* background du site */
+    body { background-color: #FFE1A8; }
+
     .wf-container { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-    .wf-panel { background:#f1f3f5; border-radius:.75rem; padding:2rem; }
+
+  /* Container avec le texte */
+    .wf-panel { background:#472D30 !important; color: white !important; border-radius:.75rem; padding:2rem; }
+
+  /* Responsive */
+    @media (min-width: 992px) { .wf-panel { padding:4rem; } }
+
+  /* Image 600x600 */
     .wf-img-600 { width:100%; max-width:600px; aspect-ratio:1/1; object-fit:cover; border-radius:.5rem; }
-    @supports not (aspect-ratio:1/1) { .wf-img-600{height:600px;} }
+  
+  /* Bouton acheté */
+    .btn-success { background-color: #6F8F72 !important; color: white !important; font-size: 1.1rem; padding: 0.75rem 1.5rem; }
+    .btn-success:hover { background-color: #5a705c !important; color: white !important; }
+
+  /* Bouton Ajoutez au panier */
+    .btn-outline-primary { color: #E26D5C; border: 2px solid #E26D5C; font-size: 1.1rem; padding: 0.75rem 1.5rem; }
+    .btn-outline-primary:hover { background-color: #E26D5C; color: white; }
+
+  /* Description texte plus grand */
+    .wf-description { font-size: 1.2rem; line-height: 1.6; }
   </style>
 </head>
 <body>
 <main class="container wf-container">
 
-  <div class="row g-4 align-items-start">
+  <div class="row g-4 align-items-center">
+    <!-- Image -->
     <div class="col-12 col-lg-6 d-flex justify-content-center">
-        <img src="{{ asset(product.image) }}" alt="" class="wf-img-600">
-      
+      <img src="{{ asset(product.image) }}" alt="{{ product.name }}" class="wf-img-600">
     </div>
 
+    <!-- Texte -->
     <div class="col-12 col-lg-6">
-      <div class="wf-panel">
-        <h1 class="h3 mb-3">{{ product.name }}</h1>
-        <p class="lead fw-semibold mb-4">{{ product.price|number_format(2, '.', ',') }} €</p>
-        <p class="mb-4">{{ product.description }}</p>
+      <div class="wf-panel h-100 d-flex flex-column justify-content-center">
+        <h1 class="h2 mb-3">{{ product.name }}</h1>
+        <p class="lead fw-semibold mb-4">{{ product.price }} €</p>
+        <p class="mb-4 wf-description">{{ product.description }}</p>
 
-        <div class="d-flex gap-2">
+        <div class="d-flex gap-2 flex-wrap">
           <a href="#" class="btn btn-success">Acheter</a>
           <a href="#" class="btn btn-outline-primary">Ajouter au panier</a>
         </div>
