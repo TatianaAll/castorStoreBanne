@@ -19,13 +19,8 @@
 
   <div class="row g-4 align-items-start">
     <div class="col-12 col-lg-6 d-flex justify-content-center">
-      {% if product.image %}
-        <img src="{{ asset('uploads/' ~ product.image) }}" alt="{{ product.name }}" class="wf-img-600">
-      {% else %}
-        <div class="wf-img-600 bg-secondary text-white d-flex align-items-center justify-content-center w-100">
-          Pas d’image
-        </div>
-      {% endif %}
+        <img src="{{ asset(product.image) }}" alt="" class="wf-img-600">
+      
     </div>
 
     <div class="col-12 col-lg-6">

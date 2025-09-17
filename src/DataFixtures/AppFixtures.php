@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         $product1->setName('Store Banne Rétractable Chêne Massif Premium 4x3m');
         $product1->setDescription('Store banne haut de gamme en chêne massif européen avec structure rétractable électrique. Finition huilée naturelle résistante aux UV et aux intempéries. Toile acrylique déperlante 280g/m² avec protection solaire UPF 50+. Coffre intégré en aluminium laqué. Télécommande et capteur vent inclus. Garantie 5 ans structure.');
         $product1->setPrice(749.99);
-        $product1->setImage('store_banne_chene_premium_4x3.jpg');
+        $product1->setImage('https://fastly.picsum.photos/id/900/400/400.jpg?hmac=BZhoEfem5d8zMcNgsCq-s25r2aUAs0T5gjBByC4L0Mc');
         $manager->persist($product1);
 
         // Fixture 2 - Store banne pin nordique
