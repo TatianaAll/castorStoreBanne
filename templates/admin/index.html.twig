@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Espace Administration</h1>
+    <p>Bienvenue {{ app.user.name }} !</p>
+
+    <p>Rôles : {{ roles|join(', ') }}</p>
+
+    <a href="{{ path('app_home') }}" class="btn btn-secondary">Retour à l'accueil</a>
+</div>
+{% endblock %}
