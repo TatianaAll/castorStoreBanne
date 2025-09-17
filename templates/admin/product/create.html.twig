@@ -2,8 +2,13 @@
 {% extends 'base.html.twig' %}
 {% block title %}Création d'un produit{% endblock %}
 
+{% block navbar %}
+    {% include 'admin/_navbarAdmin.html.twig' %}
+{% endblock %}
+
 {% block body %} 
-<section>
+<section class="container">
+  <h1>Ajout d'un nouveau produit</h1>
 {{ form_start(formView) }}
   <div>
     {{ form_label(formView.name, 'Nom du produit')}}
@@ -20,6 +25,10 @@
     <div>
     {{ form_label(formView.price, 'Prix du produit')}}
     {{ form_widget(formView.price) }}
+  </div>
+      <div>
+    {{ form_label(formView.image, 'Photo du produit')}}
+    {{ form_widget(formView.image) }}
   </div>
   <div>
       {{ form_row(formView.save, { 'label' :'Enregistrer', 'attr' : {'class' : 'btn btn-success'} }) }}
