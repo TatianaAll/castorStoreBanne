@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Créer un produit</h1>
+
+    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary mt-3">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}
