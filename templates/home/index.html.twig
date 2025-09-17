@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Accueil</h1>
+
+    {% if user %}
+        <p>Bienvenue <strong>{{ user.name }}</strong> !</p>
+        <p>Email : {{ user.email }}</p>
+        <p>Adresse : {{ user.address }}</p>
+        <p>Pays : {{ user.country }}</p>
+        <p>Téléphone : {{ user.phone }}</p>
+        <p>Code postal : {{ user.zipCode }}</p>
+        <p>Ville : {{ user.town }}</p>
+
+        <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+    {% else %}
+        <p>Vous n'êtes pas connecté.</p>
+        <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+    </br><a href="{{ path('app_admin') }}">Admin</a></li>
+    {% endif %}
+</div>
+{% endblock %}
+
