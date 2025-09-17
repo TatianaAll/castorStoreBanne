@@ -1,7 +1,28 @@
 <?php
 
 namespace App\Controller;
+use App\Repository\ProductRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
+class HomeController extends AbstractController
+{
+    #[Route('/home', name: 'home')]
+    public function index(ProductRepository $productRepository): Response
+    {
+        $title         = 'Bienvenue sur notre site';
+        $quiSommesNous = 'Nous sommes une équipe passionnée par la qualité et l’innovation. Depuis notre création, nous nous engageons à offrir les meilleurs produits à nos clients.';
+
+        $products = $productRepository->findBy([], null, 6);
+
+        return $this->render('home/index.html.twig', [
+            'title'         => $title,
+            'quiSommesNous' => $quiSommesNous,
+            'products'      => $products,
+        ]);
+    }
+}
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
