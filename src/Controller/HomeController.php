@@ -22,10 +22,5 @@ class HomeController extends AbstractController
             'quiSommesNous' => $quiSommesNous,
             'products'      => $products,
         ]);
-
-        // // $user est null si personne n'est connecté
-        // return $this->render('home/index.html.twig', [
-        //     'user' => $user,
-        // ]);
     }
 }
