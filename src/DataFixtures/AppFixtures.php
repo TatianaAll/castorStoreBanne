@@ -6,16 +6,24 @@ use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
         
         $admin = new User();
         $admin->setEmail("admin@admin");
         $admin->setRoles(["ROLE_ADMIN"]);
-        $admin->setPassword('$2y$13$W8M7yAnH7pDTLkE/JADw2eZX4gB3Ws5gSDQi2iJPC8BtGENZyA2OO');
+        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'admin'));        
         $admin->setName("admin");
         $admin->setAddress("4 quai de bordeaux");
         $admin->setPhone("06 54 35 46 56");
@@ -27,8 +35,8 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setEmail("user@user");
         $user->setRoles(["ROLE_USER"]);
-        $user->setPassword('$2y$13$Jsv3ucw/b3bCugBlPAa3F.vSG47WRLp.xXovBGoneQeGyQYNVxJOC');
-        $user->setName("user");
+        $user->setPassword($this->passwordHasher->hashPassword($user, 'user'));
+        $user->setName("user");        
         $user->setAddress("5 Avenue jean-michel");
         $user->setPhone("07 34 35 64 96");
         $user->setCountry("France");
