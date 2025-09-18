@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'home')]
+    #[Route('/', name: 'app_home')]
     public function index(ProductRepository $productRepository): Response
     {
         $title         = 'Bienvenue sur notre site';
