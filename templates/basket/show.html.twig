@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Mon panier - Castor Store Banne
+{% endblock %}
+
+{% block body %}
+  {% if basket %}
+  <h1>Panier de {{user.name}} </h1>
+    <form action="">
+      <table border="1" cellspacing="0" cellpadding="8">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Produit</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set grandTotal = 0 %}
+          {% for product in basket.productId %}
+            {% set lineTotal = product.price %}
+            {% set grandTotal = grandTotal + lineTotal %}
+            <tr>
+              <td><img src="{{ asset(product.image) }}" alt="{{ product.name }}" width="80"></td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }} €</td>
+              <td>1 <a href="{{path('remove_product', {id_user:user.id, id_product:product.id})}}">Retirer du panier</a></td>
+              <td>{{ lineTotal }} €</td>
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="5">Aucun produit dans le panier</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" style="text-align:right"><strong>Total panier :</strong></td>
+            <td><strong>{{ grandTotal }} €</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+  {% else %}
+    <h1>Vous n'avez pas encore de panier {{user.name}}</h1>
+  {% endif %}
+{% endblock %}
