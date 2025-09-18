@@ -1,6 +1,5 @@
 {% extends 'admin/baseAdmin.html.twig' %}
-{% block title %}Création d'un produit
-{% endblock %}
+{% block title %}Création d'un produit{% endblock %}
 
 {% block body %}
 	<section class="container">
@@ -9,18 +8,22 @@
 		<div>
 			{{ form_label(form.name, 'Nom du produit')}}
 			{{ form_widget(form.name) }}
+			{{form_errors(form.name)}}
 		</div>
 		<div>
 			{{ form_label(form.description, 'Description du produit')}}
 			{{ form_widget(form.description) }}
+			{{form_errors(form.description)}}
 		</div>
 		<div>
 			{{ form_label(form.quantity, 'Quantité en stock')}}
 			{{ form_widget(form.quantity) }}
+			{{form_errors(form.quantity)}}
 		</div>
 		<div>
 			{{ form_label(form.price, 'Prix du produit')}}
 			{{ form_widget(form.price) }}
+			{{form_errors(form.price)}}
 		</div>
 		<div>
 			{{ form_label(form.image, 'Photo du produit')}}

@@ -73,37 +73,29 @@
           <li>
               <a href="{{ path('all_users') }}"> Voir les clients </a>
           </li>
-                <li class="nav-item">
-                    <a
-                        class="nav-link text-white"
-                        href="{{ path('app_home') }}"
-                    >
-                        Retour site</a
-                    >
-                </li>
-                {% if app.user %}
-                <li class="nav-item">
-                    <a
-                        class="nav-link text-white"
-                        href="{{ path('app_logout') }}"
-                    >
-                        Logout
-                    </a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a
-                        class="nav-link text-white"
-                        href="{{ path('app_login') }}"
-                    >
-                        Login
-                    </a>
-                </li>
-                {% endif %}
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{ path('app_home') }}">
+              Retour site</a>
+          </li>
+            {% if app.user %}
+            <li class="nav-item">
+            <a class="nav-link text-white" href="{{ path('app_logout') }}">
+              Logout
+            </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{ path('app_login') }}">
+                Login
+              </a>
+            </li>
+            {% endif %}
             </ul>
         </nav>
         <!-- Contenu principal -->
-        <div class="container mt-4">{% block body %}{% endblock %}</div>
+        <div class="container mt-4">
+          {% block body %}{% endblock %}
+        </div>
 
         <!-- Footer -->
         <footer>
