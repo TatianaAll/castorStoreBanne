@@ -5,10 +5,11 @@ use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'home')]
+    #[Route('/', name: 'app_home')]
     public function index(ProductRepository $productRepository): Response
     {
         $title         = 'Bienvenue sur notre site';
@@ -21,21 +22,10 @@ class HomeController extends AbstractController
             'quiSommesNous' => $quiSommesNous,
             'products'      => $products,
         ]);
-    }
-}
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-class HomeController extends AbstractController
-{
-    #[Route('/', name: 'app_home')]
-    public function index(UserInterface $user = null): Response
-    {
-        // $user est null si personne n'est connecté
-        return $this->render('home/index.html.twig', [
-            'user' => $user,
-        ]);
+        // // $user est null si personne n'est connecté
+        // return $this->render('home/index.html.twig', [
+        //     'user' => $user,
+        // ]);
     }
 }
