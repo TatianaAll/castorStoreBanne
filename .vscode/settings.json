@@ -1,7 +1,8 @@
 {
   "php.version": "8.4",
   "files.associations": {
-    "*.twig": "twig",
+    "*.twig": "html",
     "*.html.twig": "html"
-  }
+  },
+  "vscord.enabled": true
 }
