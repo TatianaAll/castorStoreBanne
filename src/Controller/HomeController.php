@@ -23,14 +23,4 @@ class HomeController extends AbstractController
             'products'      => $products,
         ]);
     }
-    /*
-    #[Route('/', name: 'app_home')]
-    public function index2(UserInterface $user = null): Response
-    {
-        // $user est null si personne n'est connecté
-        return $this->render('home/index.html.twig', [
-            'user' => $user,
-        ]);
-    }
-        */
 }
