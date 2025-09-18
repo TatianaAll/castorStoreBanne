@@ -30,10 +30,10 @@ class AdminProductController extends AbstractController
     $formCreateProduct->handleRequest($request);
 
     if ($formCreateProduct->isSubmitted()) {
-      // dd($formCreateProduct->isValid(), $formCreateProduct->getErrors(true, false));
+      //dd($formCreateProduct->isValid(), $formCreateProduct->getErrors(true, false));
       if ($formCreateProduct->isSubmitted() && $formCreateProduct->isValid()) {
             $uploadedFile = $formCreateProduct->get('image')->getData();
-
+            //dd($uploadedFile);
             if ($uploadedFile) {
               $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
               $safeFilename = $slugger->slug($originalFilename);
@@ -45,7 +45,7 @@ class AdminProductController extends AbstractController
                 // Handle exception if something happens during file upload
               }
 
-              $product->setImage("/castorStoreBanne/castorStoreBanne/public/uploads/".$newFilename);
+              $product->setImage("/castorStoreBanne/public/uploads/".$newFilename);
             }
 
             $entityManager->persist($product);
