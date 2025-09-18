@@ -1,38 +1,32 @@
+{% extends 'admin/baseAdmin.html.twig' %}
 {% block title %}Création d'un produit
-{% endblock %}
-
-{% block navbar %}
-	{% include 'admin/_navbarAdmin.html.twig' %}
 {% endblock %}
 
 {% block body %}
 	<section class="container">
 		<h1>Ajout d'un nouveau produit</h1>
-		{{ form_start(formView) }}
+		{{ form_start(form) }}
 		<div>
-			{{ form_label(formView.name, 'Nom du produit')}}
-			{{ form_widget(formView.name) }}
+			{{ form_label(form.name, 'Nom du produit')}}
+			{{ form_widget(form.name) }}
 		</div>
 		<div>
-			{{ form_label(formView.description, 'Description du produit')}}
-			{{ form_widget(formView.description) }}
+			{{ form_label(form.description, 'Description du produit')}}
+			{{ form_widget(form.description) }}
 		</div>
 		<div>
-			{{ form_label(formView.quantity, 'Quantité en stock')}}
-			{{ form_widget(formView.quantity) }}
+			{{ form_label(form.quantity, 'Quantité en stock')}}
+			{{ form_widget(form.quantity) }}
 		</div>
 		<div>
-			{{ form_label(formView.price, 'Prix du produit')}}
-			{{ form_widget(formView.price) }}
+			{{ form_label(form.price, 'Prix du produit')}}
+			{{ form_widget(form.price) }}
 		</div>
 		<div>
-			{{ form_label(formView.image, 'Photo du produit')}}
-			{{ form_widget(formView.image) }}
+			{{ form_label(form.image, 'Photo du produit')}}
+			{{ form_widget(form.image) }}
 		</div>
-		<div>
-			{{ form_row(formView.save, { 'label' :'Enregistrer', 'attr' : {'class' : 'btn btn-success'} }) }}
-		</div>
-		{{ form_end(formView) }}
+		{{ form_end(form) }}
 	</section>
 
 {% endblock %}

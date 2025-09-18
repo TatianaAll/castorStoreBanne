@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProductType extends AbstractType
 {
@@ -24,10 +25,21 @@ class ProductType extends AbstractType
             ->add('quantity', IntegerType::class)
             ->add('price', NumberType::class)
             ->add('image', FileType::class, [
+                'label' => 'Image (JPG, PNG file)',
                 'required' => false,
-                'mapped' => false
+                'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'extensionsMessage' => 'Please upload a valid image file (JPG or PNG)',
+                    ])
+                ],
             ])
-            ->add('save', type: SubmitType::class)
+            ->add('save', SubmitType::class)
         ;
     }
 
