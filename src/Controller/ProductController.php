@@ -31,47 +31,4 @@ final class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/product/new', name: 'product_new', methods: ['GET', 'POST'])]
-    public function new(
-        Request $request,
-        EntityManagerInterface $em,
-        SluggerInterface $slugger
-    ): Response {
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Gestion du fichier uploadé
-            $uploadedFile = $form->get('image')->getData();
-            if ($uploadedFile) {
-                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
-
-                // Déplacement du fichier dans public/uploads
-                $uploadedFile->move(
-                    $this->getParameter('kernel.project_dir') . '/public/uploads',
-                    $newFilename
-                );
-
-                // Met à jour le champ image de l'entité
-                $product->setImage('uploads/' . $newFilename);
-            }
-
-            $em->persist($product);
-            $em->flush();
-
-            $this->addFlash('success', 'Produit créé avec succès !');
-
-            return $this->redirectToRoute('product_index');
-        }
-
-        return $this->render('product/new.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-
-
 }
