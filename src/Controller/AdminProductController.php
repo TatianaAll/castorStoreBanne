@@ -29,29 +29,33 @@ class AdminProductController extends AbstractController
     $formCreateProduct = $this->createForm(ProductType::class, $product);
     $formCreateProduct->handleRequest($request);
 
-    if ($formCreateProduct->isSubmitted() && $formCreateProduct->isValid()) {
-      $uploadedFile = $formCreateProduct->get('image')->getData();
+    if ($formCreateProduct->isSubmitted()) {
+      // dd($formCreateProduct->isValid(), $formCreateProduct->getErrors(true, false));
+      if ($formCreateProduct->isSubmitted() && $formCreateProduct->isValid()) {
+            $uploadedFile = $formCreateProduct->get('image')->getData();
 
-      if ($uploadedFile) {
-        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $slugger->slug($originalFilename);
-        $newFilename = $safeFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
+            if ($uploadedFile) {
+              $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+              $safeFilename = $slugger->slug($originalFilename);
+              $newFilename = $safeFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
 
-        try {
-          $uploadedFile->move($fileDirectory, $newFilename);
-        } catch (FileException $e) {
-          // Handle exception if something happens during file upload
-        }
+              try {
+                $uploadedFile->move($fileDirectory, $newFilename);
+              } catch (FileException $e) {
+                // Handle exception if something happens during file upload
+              }
 
-        $product->setImage($newFilename);
-      }
+              $product->setImage("/castorStoreBanne/castorStoreBanne/public/uploads/".$newFilename);
+            }
 
-      $entityManager->persist($product);
-      $entityManager->flush();
+            $entityManager->persist($product);
+            $entityManager->flush();
 
-      $this->addFlash('success', "Nouveau produit enregistré");
-      return $this->redirectToRoute('admin_dashboard');
+            $this->addFlash('success', "Nouveau produit enregistré");
+            return $this->redirectToRoute('admin_dashboard');
+          }
     }
+    
 
     $form = $formCreateProduct->createView();
     return $this->render('admin/product/create.html.twig', ["form" => $form]);
