@@ -21,14 +21,20 @@ class BasketController extends AbstractController
   //pour gerer le basket il faut une date de creation et un date d'update donc modifier la table basket avec ces 2 colonnes
 
 
-  #[Route(path: '/basket/{id_user}/{id_product}', name: 'create_basket', requirements: ["id_user" => "\d+", "id_product" => "\d+"])]
+  #[Route(
+    path: '/basket/{id_user}/{id_product}/{redirect}',
+    name: 'create_basket',
+    requirements: ["id_user" => "\d+", "id_product" => "\d+"],
+    defaults: ["redirect" => "product"]
+  )]
   function createBasket(
     EntityManagerInterface $entityManager,
     BasketRepository $basketRepository,
     int $id_product,
     int $id_user,
     UserRepository $userRepository,
-    ProductRepository $productRepository
+    ProductRepository $productRepository,
+    string $redirect
   ): Response {
 
     //je cherche mon produit et mon User dans la BD
@@ -57,7 +63,7 @@ class BasketController extends AbstractController
 
       $this->addFlash(
         'success',
-        'Nouveau panier créé pour l\'utilisateur {$id_user}'
+        "Nouveau panier créé pour l\'utilisateur {$id_user}"
       );
     } else {
       //si on a deja un basket pour ce user on va ajouter le produit dedans
@@ -70,7 +76,11 @@ class BasketController extends AbstractController
       $this->addFlash('success', "Produit ajouté au panier");
     }
 
-    return $this->redirectToRoute('product_show', ['id' => $id_product]);
+    if ($redirect == 'basket') {
+      return $this->redirectToRoute('show_basket', ['id_user' => $id_user]);
+    } else {
+      return $this->redirectToRoute('product_show', ['id' => $id_product]);
+    }
   }
 
 
@@ -94,7 +104,7 @@ class BasketController extends AbstractController
     return $this->render('/basket/show.html.twig', ['basket' => $basket, 'user' => $user]);
   }
 
-  #[Route(path: '/basket/{id_user}/{id_product}/remove', name: 'remove_product', requirements: ["id_user" => "\d+"], methods: ['GET'])]
+  #[Route(path: '/basket/{id_user}/remove/{id_product}', name: 'remove_product', requirements: ["id_user" => "\d+", "id_product" => "\d+"], methods: ['GET'])]
   function deleteBasket(
     BasketRepository $basketRepository,
     UserRepository $userRepository,
@@ -108,7 +118,7 @@ class BasketController extends AbstractController
 
     if (!$basket) {
       $this->addFlash("error", "Ya pas basket");
-      return $this->redirectToRoute("show_basket");
+      return $this->redirectToRoute("show_basket", ['id_user' => $id_user]);
     }
 
     $productToRemove = $productRepository->find($id_product);

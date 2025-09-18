@@ -7,7 +7,7 @@ Mon panier - Castor Store Banne
 {% block body %}
   {% if basket %}
   <h1>Panier de {{user.name}} </h1>
-    <form action="">
+
       <table border="1" cellspacing="0" cellpadding="8">
         <thead>
           <tr>
@@ -27,7 +27,10 @@ Mon panier - Castor Store Banne
               <td><img src="{{ asset(product.image) }}" alt="{{ product.name }}" width="80"></td>
               <td>{{ product.name }}</td>
               <td>{{ product.price }} €</td>
-              <td>1 <a href="{{path('remove_product', {id_user:user.id, id_product:product.id})}}">Retirer du panier</a></td>
+              <td>1 
+              <a href="{{ path('remove_product', {id_user: user.id, id_product: product.id}) }}">
+                Retirer du panier
+                </a></td>
               <td>{{ lineTotal }} €</td>
             </tr>
           {% else %}
@@ -43,7 +46,7 @@ Mon panier - Castor Store Banne
           </tr>
         </tfoot>
       </table>
-    </form>
+
   {% else %}
     <h1>Vous n'avez pas encore de panier {{user.name}}</h1>
   {% endif %}
