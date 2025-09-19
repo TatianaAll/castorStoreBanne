@@ -8,42 +8,11 @@
 			{% block title %}Mon Site
 			{% endblock %}
 		</title>
-		<link
-		rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
-		<!-- Bloc pour CSS spécifique aux pages -->
-		{% block styles %}
-			<style>
-				/* background */
-				body {
-					background-color: #ffe1a8;
-					display: flex;
-					flex-direction: column;
-					min-height: 100vh;
-					margin: 0;
-				}
-				/* footer */
-				footer {
-					background-color: #472d30;
-					color: white;
-					font-size: 1.2rem;
-					line-height: 1.6;
-					padding: 3rem 0;
-					min-height: 30vh;
-					display: flex;
-					align-items: center;
-					width: 100vw;
-					position: relative;
-					left: 50%;
-					right: 50%;
-					margin-left: -50vw;
-					margin-right: -50vw;
-				}
-				footer h5 {
-					font-size: 1.5rem;
-					margin-bottom: 1rem;
-				}
-			</style>
-		{% endblock %}
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+		<link rel="icon" type="image/svg" href="{{asset('assets/castor.svg')}}"/>
+		<link rel="stylesheet" href="../assets/styles/app.css"/>
+
 	</head>
 
 	<body>
@@ -51,10 +20,10 @@
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
 			<div class="container-fluid">
 				<a class="navbar-brand text-white fw-bold d-flex align-items-center" href="{{ path('app_home') }}">
-					<img src="{{ asset('assets/castor.png') }}" alt="Logo" style="
-										                  height: 5em;
-										                  width: auto;
-										                  margin-right: 0.5rem;"/>
+					<img src="{{ asset('castor.png') }}" alt="Logo" style="
+															                  height: 5em;
+															                  width: auto;
+															                  margin-right: 0.5rem;"/>
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>

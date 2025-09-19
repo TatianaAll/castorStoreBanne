@@ -4,10 +4,10 @@ namespace App\Controller;
 
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\PaginatorInterface; 
 use Symfony\UX\Map\Map;
 use Symfony\UX\Map\Point;
 
@@ -17,16 +17,17 @@ class HomeController extends AbstractController
     public function index(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $title         = 'Bienvenue sur notre site';
-        $quiSommesNous = 'Nous sommes une équipe passionnée par la qualité et l’innovation. Depuis notre création, nous nous engageons à offrir les meilleurs produits à nos clients.';
+        $quiSommesNous = 'Nous sommes une équipe passionnée par la qualité et l’innovation. 
+        Depuis notre création, nous nous engageons à offrir les meilleurs produits à nos clients.';
 
         $query = $productRepository->createQueryBuilder('p')
                     ->orderBy('p.id', 'DESC')
                     ->getQuery();
 
         $products = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            6
+            $query,                             
+            $request->query->getInt('page', 1), 
+            6                                   
         );
 
         $map = (new Map())
