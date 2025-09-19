@@ -87,8 +87,8 @@
 				<p class="text-center text-muted">Aucun produit pour le moment.</p>
 			{% endfor %}
 		</div>
-		<div class="center">
-			{{ knp_pagination_render(products) }}
+		<div>
+			{{ knp_pagination_render(products, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}
 		</div>
 	</main>
 {% endblock %}
