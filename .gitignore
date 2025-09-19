@@ -16,6 +16,7 @@
 .qodo
 .DS_Store
 
-# Ignore specific public files
-/public/info.php
-/public/uploads/
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###

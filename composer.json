@@ -15,6 +15,7 @@
         "picocss/pico": "^2.1",
         "symfony/apache-pack": "*",
         "symfony/asset": "7.3.*",
+        "symfony/asset-mapper": "7.3.*",
         "symfony/console": "7.3.*",
         "symfony/dotenv": "7.3.*",
         "symfony/flex": "^2",
@@ -23,8 +24,11 @@
         "symfony/mailer": "7.3.*",
         "symfony/runtime": "7.3.*",
         "symfony/security-bundle": "^7.3",
+        "symfony/stimulus-bundle": "^2.30",
         "symfony/translation": "7.3.*",
         "symfony/twig-bundle": "7.3.*",
+        "symfony/ux-leaflet-map": "^2.30",
+        "symfony/ux-map": "^2.30",
         "symfony/validator": "7.3.*",
         "symfony/yaml": "7.3.*",
         "symfonycasts/reset-password-bundle": "^1.23",
@@ -62,7 +66,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "importmap:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
