@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     public function index(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $title         = 'Bienvenue sur notre site';
-        $quiSommesNous = 'Nous sommes une équipe passionnée par la qualité et l’innovation. 
+        $quiSommesNous = '<span style>Nous sommes une équipe passionnée par la qualité et l’innovation. 
         Depuis notre création, nous nous engageons à offrir les meilleurs produits à nos clients.';
 
         $query = $productRepository->createQueryBuilder('p')

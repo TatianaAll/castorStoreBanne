@@ -22,6 +22,9 @@ body {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
 }
+.card.h-100.shadow-sm.border-0{
+    border-radius: 20px !important;
+}
 
 .wf-title-bar {
     background: #472d30;
@@ -31,7 +34,7 @@ body {
 }
 
 .wf-panel {
-    background: url("../wood-pattern.jpg") repeat center center, #472d30;
+    background: repeat center center, #472d30;
     border-radius: 0.75rem;
     padding: 2rem;
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
@@ -51,8 +54,9 @@ body {
 .wf-img-400 {
     width: 100%;
     aspect-ratio: 1 / 1;
+    padding: 2%;
     object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 20px;
 }
 
 @supports not (aspect-ratio: 1 / 1) {
@@ -155,6 +159,10 @@ body {
 .navbar .nav-link {
     font-size: 1.5rem !important;
 }
+.form-check-label{
+    color: white;
+}
+
 
 /* ================================
    FOOTER
@@ -168,12 +176,8 @@ footer {
     min-height: 30vh;
     display: flex;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
 }
 
 footer h5 {
@@ -229,5 +233,6 @@ footer h5 {
 @media (min-width: 992px) {
     .wf-panel {
         padding: 4rem;
+        color: #472d30;
     }
 }
