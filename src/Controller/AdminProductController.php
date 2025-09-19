@@ -45,7 +45,7 @@ class AdminProductController extends AbstractController
                 // Handle exception if something happens during file upload
               }
 
-              $product->setImage("/castorStoreBanne/public/uploads/".$newFilename);
+              $product->setImage("/uploads/".$newFilename);
             }
 
             $entityManager->persist($product);
