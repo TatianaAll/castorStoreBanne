@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
         $product1->setName('Store Banne Rétractable Chêne Massif Premium 4x3m');
         $product1->setDescription('Store banne haut de gamme en chêne massif européen avec structure rétractable électrique. Finition huilée naturelle résistante aux UV et aux intempéries. Toile acrylique déperlante 280g/m² avec protection solaire UPF 50+. Coffre intégré en aluminium laqué. Télécommande et capteur vent inclus. Garantie 5 ans structure.');
         $product1->setPrice(749.99);
-        $product1->setImage('https://fastly.picsum.photos/id/900/400/400.jpg?hmac=BZhoEfem5d8zMcNgsCq-s25r2aUAs0T5gjBByC4L0Mc');
+        $product1->setImage('uploads/store-68cd282065ef2.jpg');
         $manager->persist($product1);
 
         // Fixture 2 - Store banne pin nordique
@@ -60,7 +60,7 @@ class AppFixtures extends Fixture
         $product2->setName('Store Banne Pin Nordique Traité Autoclave 3x2.5m');
         $product2->setDescription('Store banne économique en pin nordique traité autoclave classe IV. Structure fixe avec bras articulés manuels. Bois certifié PEFC avec traitement fongicide et insecticide. Toile polyester enduite 250g/m² résistante aux déchirures. Installation murale avec fixations renforcées incluses. Excellent rapport qualité-prix.');
         $product2->setPrice(189.99);
-        $product2->setImage('https://fastly.picsum.photos/id/493/400/400.jpg?hmac=tYu741nniJ2UhCDTC4tJiACfmC_dHhhz4OnQ-aoG_u0');
+        $product2->setImage('uploads/store2-68cd285cceac1.jpg');
         $manager->persist($product2);
 
         // Fixture 3 - Store banne teck exotique
