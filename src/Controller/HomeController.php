@@ -10,6 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\UX\Map\Map;
 use Symfony\UX\Map\Point;
+use Symfony\UX\Map\Marker;
+use Symfony\UX\Map\Circle;
+use Symfony\UX\Map\InfoWindow;
 
 class HomeController extends AbstractController
 {
@@ -30,8 +33,25 @@ class HomeController extends AbstractController
         );
 
         $map = (new Map())
-            ->center(new Point(46.903354, 1.888334))
-            ->zoom(6);
+            ->center(new Point(44.840834, -0.576517))
+            ->zoom(14)
+            ->addMarker(new Marker(
+        position: new Point(44.841318, -0.562080),
+        title: 'MyDigitalSchool'
+            ))
+            ->addMarker(new Marker(
+        position: new Point(44.841739, -0.569191),
+        title: "Miroir d'eau"
+            ))
+            ->addMarker(new Marker(
+        position: new Point(44.862812420438345, -0.5497545203372735),
+        title: 'Cité du Vin'
+            ))
+            ->addMarker(new Marker(
+        position: new Point(44.85734674294928, -0.5611078089140751),
+        title: 'Brasserie des chartrons'
+            ))
+            ->fitBoundsToMarkers();
 
         return $this->render('home/index.html.twig', [
             'title'         => $title,
