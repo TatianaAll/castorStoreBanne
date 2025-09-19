@@ -5,67 +5,67 @@
 {% block styles %}
 {{ parent() }}
 <style>
-  .wf-container { 
-    padding-top: 2.5rem; 
-    padding-bottom: 2.5rem; 
+  .wf-container {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
-  .wf-title-bar { 
-    background:#472D30; 
-    color: white; 
-    border-radius:.5rem; 
-    padding:.85rem 1.25rem; 
-  }
-
-  .wf-panel { 
-    background:#472D30; 
-    color: white; 
-    border-radius:.75rem; 
-    padding:2rem; 
+  .wf-title-bar {
+    background:#472D30;
+    color: white;
+    border-radius:.5rem;
+    padding:.85rem 1.25rem;
   }
 
-  .wf-section { 
-    margin-top:2.5rem; 
-    margin-bottom:2.5rem; 
+  .wf-panel {
+    background:#472D30;
+    color: white;
+    border-radius:.75rem;
+    padding:2rem;
+  }
+
+  .wf-section {
+    margin-top:2.5rem;
+    margin-bottom:2.5rem;
   }
 
   .wf-products-wrap {
-    background: url("{{ asset('assets/wood-pattern.jpg') }}") repeat center center, #472D30;
+    background: url("{{ asset('wood-pattern.jpg') }}") repeat center center, #472D30;
     color: white;
     border-radius: .75rem;
     padding: 2rem;
   }
-  .wf-heading { 
-    font-weight:600; 
+  .wf-heading {
+    font-weight:600;
   }
 
-  .wf-img-400 { 
-    width:100%; 
-    aspect-ratio:1/1; 
-    object-fit:cover; 
-    border-radius:.5rem; 
+  .wf-img-400 {
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:.5rem;
   }
 
   /* bouton */
-  .btn-success { 
-    background-color: #6F8F72; 
-    color: white; 
-    font-size: 1.1rem; 
-    padding: 0.75rem 1.5rem; 
+  .btn-success {
+    background-color: #6F8F72;
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
   }
-  .btn-success:hover { 
-    background-color: #5a705c; 
-    color: white; 
+  .btn-success:hover {
+    background-color: #5a705c;
+    color: white;
   }
-  .btn-outline-primary { 
-    color: #E26D5C; 
-    border: 2px solid #E26D5C; 
-    font-size: 1.1rem; 
-    padding: 0.75rem 1.5rem; 
+  .btn-outline-primary {
+    color: #E26D5C;
+    border: 2px solid #E26D5C;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
   }
 
-  .btn-outline-primary:hover { 
-    background-color: #E26D5C; 
-    color: white; 
+  .btn-outline-primary:hover {
+    background-color: #E26D5C;
+    color: white;
   }
 
 </style>
@@ -126,6 +126,7 @@
   </section>
 </div>
 
+{{ ux_map(map, { style: 'height: 300px' }) }}
 
 {% endblock %}
 
