@@ -95,6 +95,22 @@
 				</div>
 			</div>
 
+      <div class="row wf-section">
+        <div class="col-12 col-md-6 offset-md-3">
+            <form method="get" action="{{ path('product_index') }}" class="d-flex mb-4">
+                <input 
+                    type="text" 
+                    name="q" 
+                    value="{{ searchTerm|default('') }}" 
+                    placeholder="Rechercher un produit..." 
+                    class="form-control me-2"
+                >
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </form>
+        </div>
+      </div>
+
+
 			{% for product in products %}
 				<div class="card mb-4 shadow-sm border-0" style="background-color: #472D30; color: white;">
 					<div class="row g-0 align-items-center">
