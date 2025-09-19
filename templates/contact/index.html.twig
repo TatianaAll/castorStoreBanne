@@ -58,10 +58,6 @@
   <section id="contact" class="row wf-section">
     <div class="col-12 col-md-8 offset-md-2">
       <div class="wf-panel">
-        {% for message in app.flashes('success') %}
-          <div class="alert alert-success">{{ message }}</div>
-        {% endfor %}
-
         {{ form_start(contactForm, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
 
           <div class="form-floating mb-3">
