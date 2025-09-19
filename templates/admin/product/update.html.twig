@@ -1,35 +1,99 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 
-{% block title %}Création d'un produit{% endblock %}
+{% block title %}Update produit
+{% endblock %}
+
+{% block styles %}
+	{{ parent() }}
+	<style>
+		.wf-container {
+			padding-top: 2.5rem;
+			padding-bottom: 2.5rem;
+		}
+
+		.wf-title-bar {
+			background: #472D30;
+			color: white;
+			border-radius: 0.5rem;
+			padding: 0.85rem 1.25rem;
+		}
+
+		.wf-panel {
+			background: url("{{ asset('assets/wood-pattern.jpg') }}") repeat center center, #472D30;
+			border-radius: 0.75rem;
+			padding: 2rem;
+			box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+			color: white;
+		}
+		.wf-section {
+			margin-top: 2.5rem;
+			margin-bottom: 2.5rem;
+		}
+		.btn-primary {
+			background-color: #6F8F72;
+			border: none;
+			font-size: 1.1rem;
+			padding: 0.75rem 1.5rem;
+			border-radius: 0.5rem;
+		}
+
+		.btn-primary:hover {
+			background-color: #5a705c;
+		}
+
+		.form-control {
+			background: #fff !important;
+			color: #222 !important;
+		}
+		.form-control:focus {
+			background: #fff !important;
+			color: #222 !important;
+		}
+	</style>
+{% endblock %}
 
 {% block body %}
-	<section class="container">
-    <h1>Mise à jour de : {{productToUpdate.name}}</h1>
-		{{ form_start(formView) }}
-		<div>
-			{{ form_label(formView.name, 'Nom du produit')}}
-			{{ form_widget(formView.name) }}
+	<div class="wf-container">
+		<div class="row wf-section">
+			<div class="col-12 col-md-8 offset-md-2">
+				<div class="wf-title-bar text-center">
+					<h1 class="h3 m-0">Mise à jour du produit {{productToUpdate.name}}</h1>
+				</div>
+			</div>
 		</div>
-		<div>
-			{{ form_label(formView.description, 'Description du produit')}}
-			{{ form_widget(formView.description) }}
-		</div>
-		<div>
-			{{ form_label(formView.quantity, 'Quantité en stock')}}
-			{{ form_widget(formView.quantity) }}
-		</div>
-		<div>
-			{{ form_label(formView.price, 'Prix du produit')}}
-			{{ form_widget(formView.price) }}
-		</div>
-		<div>
-			{{ form_label(formView.image, 'Photo du produit')}}
-			{{ form_widget(formView.image) }}
-		</div>
-		<div>
-			{{ form_row(formView.save, { 'label' :'Enregistrer', 'attr' : {'class' : 'btn btn-success'} }) }}
-		</div>
-		{{ form_end(formView) }}
-	</section>
+		<section class="row wf-section">
+			<div class="col-12 col-md-8 offset-md-2">
+				<div class="wf-panel">
+					{{ form_start(formView) }}
+					<div class="mb-3">
+						{{ form_label(formView.name, 'Nom du produit') }}
+						{{ form_widget(formView.name, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="mb-3">
+						{{ form_label(formView.description, 'Description du produit') }}
+						{{ form_widget(formView.description, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="mb-3">
+						{{ form_label(formView.quantity, 'Quantité en stock') }}
+						{{ form_widget(formView.quantity, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="mb-3">
+						{{ form_label(formView.price, 'Prix du produit') }}
+						{{ form_widget(formView.price, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="mb-3">
+						{{ form_label(formView.image, 'Photo du produit') }}
+						{{ form_widget(formView.image, {'attr': {'class': 'form-control'}}) }}
+						{{ form_errors(formView.image) }}
+					</div>
 
-{% endblock %}
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary" style="width: 100%;">Créer le produit</button>
+					</div>
+					<span style="visibility: hidden;">{{ form_end(formView) }}</span>
+				</div>
+
+			</div>
+		</div>
+	</section>
+</div>{% endblock %}

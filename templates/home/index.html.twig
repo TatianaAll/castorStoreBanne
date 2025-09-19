@@ -1,137 +1,171 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Accueil{% endblock %}
-
+{% block title %}Accueil
+{% endblock %}
 {% block styles %}
-{{ parent() }}
-<style>
-  .wf-container { 
-    padding-top: 2.5rem; 
-    padding-bottom: 2.5rem; 
-  }
-  .wf-title-bar { 
-    background:#472D30; 
-    color: white; 
-    border-radius:.5rem; 
-    padding:.85rem 1.25rem; 
-  }
+	{{ parent() }}
+	<style>
+		.wf-container {
+			padding-top: 2.5rem;
+			padding-bottom: 2.5rem;
+		}
+		.wf-title-bar {
+			background: #472d30;
+			color: white;
+			border-radius: 0.5rem;
+			padding: 0.85rem 1.25rem;
+		}
 
-  .wf-panel { 
-    background:#472D30; 
-    color: white; 
-    border-radius:.75rem; 
-    padding:2rem; 
-  }
+		.wf-panel {
+			background: #472d30;
+			color: white;
+			border-radius: 0.75rem;
+			padding: 2rem;
+		}
 
-  .wf-section { 
-    margin-top:2.5rem; 
-    margin-bottom:2.5rem; 
-  }
+		.wf-products-wrap {
+			background: url("{{ asset('assets/wood-pattern.jpg') }}") repeat center center, #472d30;
+			color: white;
+			border-radius: 0.75rem;
+			padding: 2rem;
+		}
+		.wf-heading {
+			font-weight: 600;
+		}
 
-  .wf-products-wrap {
-    background: url("{{ asset('assets/wood-pattern.jpg') }}") repeat center center, #472D30;
-    color: white;
-    border-radius: .75rem;
-    padding: 2rem;
-  }
-  .wf-heading { 
-    font-weight:600; 
-  }
+		.wf-img-400 {
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			border-radius: 0.5rem;
+		}
 
-  .wf-img-400 { 
-    width:100%; 
-    aspect-ratio:1/1; 
-    object-fit:cover; 
-    border-radius:.5rem; 
-  }
+    .text-price {
+      color: #e26d5c;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
 
-  /* bouton */
-  .btn-success { 
-    background-color: #6F8F72; 
-    color: white; 
-    font-size: 1.1rem; 
-    padding: 0.75rem 1.5rem; 
-  }
-  .btn-success:hover { 
-    background-color: #5a705c; 
-    color: white; 
-  }
-  .btn-outline-primary { 
-    color: #E26D5C; 
-    border: 2px solid #E26D5C; 
-    font-size: 1.1rem; 
-    padding: 0.75rem 1.5rem; 
-  }
+		/* bouton */
+		.btn-success {
+			background-color: #6f8f72;
+			color: white;
+			font-size: 1.1rem;
+			padding: 0.75rem 1.5rem;
+		}
+		.btn-success:hover {
+			background-color: #5a705c;
+			color: white;
+		}
+		.btn-outline-primary {
+			color: #e26d5c;
+			border: 2px solid #e26d5c;
+			font-size: 1.1rem;
+			padding: 0.75rem 1.5rem;
+		}
 
-  .btn-outline-primary:hover { 
-    background-color: #E26D5C; 
-    color: white; 
-  }
+		.btn-outline-primary:hover {
+			background-color: #e26d5c;
+			color: white;
+		}
 
-</style>
+		/* Pagination custom */
+		.wf-pagination .pagination {
+			gap: 0.25rem; /* petit espace entre les boutons */
+		}
+
+		.wf-pagination .page-link {
+			color: #472d30; /* texte brun */
+			background-color: #ffe1a8; /* fond beige */
+			border: 1px solid #e26d5c; /* contour rouge-orangé */
+			border-radius: 0.5rem; /* arrondis doux */
+			transition: all 0.2s ease-in-out; /* animation fluide */
+		}
+
+		.wf-pagination .page-link:hover {
+			color: white;
+			background-color: #e26d5c; /* hover rouge-orangé */
+			border-color: #e26d5c;
+			transform: translateY(-2px); /* petit effet "lift" */
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+		}
+
+		.wf-pagination .page-item.active .page-link {
+			color: white;
+			background-color: #6f8f72; /* vert primaire */
+			border-color: #6f8f72;
+			font-weight: bold;
+		}
+
+		.wf-pagination .page-item.disabled .page-link {
+			color: #ccc;
+			background-color: #f5f5f5;
+			border-color: #ddd;
+			box-shadow: none;
+			cursor: not-allowed;
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-<div class="wf-container">
-  <!-- Titre -->
-  <div class="row wf-section">
-    <div class="col-12 col-md-8 offset-md-2">
-      <div class="wf-title-bar text-center">
-        <h1 class="h3 m-0">{{ title }}</h1>
-      </div>
-    </div>
-  </div>
+	<div
+		class="wf-container">
+		<!-- Titre -->
+		<div class="row wf-section">
+			<div class="col-12 col-md-8 offset-md-2">
+				<div class="wf-title-bar text-center">
+					<h1 class="h3 m-0">{{ title }}</h1>
+				</div>
+			</div>
+		</div>
 
-  <!-- Qui sommes nous -->
-  <section id="about" class="row wf-section">
-    <div class="col-12 col-md-10 offset-md-1">
-      <div class="wf-panel text-center">
-        <h2 class="h5 wf-heading mb-3">Qui sommes nous</h2>
-        <p class="mb-0">{{ quiSommesNous }}</p>
-      </div>
-    </div>
-  </section>
+		<!-- Qui sommes nous -->
+		<section id="about" class="row wf-section">
+			<div class="col-12 col-md-10 offset-md-1">
+				<div class="wf-panel text-center">
+					<h2 class="h5 wf-heading mb-3">Qui sommes nous</h2>
+					<p class="mb-0">{{ quiSommesNous }}</p>
+				</div>
+			</div>
+		</section>
 
-  <!-- Produits -->
-  <section id="products" class="row wf-section">
-    <div class="col-12 col-md-6 offset-md-3">
-      <div class="wf-title-bar text-center">
-        <h2 class="h6 m-0">Nos produits</h2>
-      </div>
-    </div>
+		<!-- Produits -->
+		<section id="products" class="row wf-section">
+			<div class="col-12 col-md-6 offset-md-3">
+				<div class="wf-title-bar text-center">
+					<h2 class="h6 m-0">Nos produits</h2>
+				</div>
+			</div>
 
-    <div class="col-12 mt-4">
-      <div class="wf-products-wrap">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
-          {% for product in products %}
-            <div class="col">
-              <div class="card h-100 shadow-sm border-0" style="background-color: #472D30; color: white;">
-                <a href="{{ path('product_show', { id: product.id }) }}" class="d-block">
-                  <img src="{{ asset(product.image) }}" alt="{{ product.name }}" class="wf-img-400" width="400" height="400" loading="lazy">
-                </a>
-                <div class="card-body d-flex flex-column">
-                  <h3 class="h6 mb-2">{{ product.name }}</h3>
-                  <div class="mt-auto fw-semibold text-primary">{{ product.price|number_format(2, '.', ',') }} €</div>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-        {# -- Changement : rendu de la pagination KNP #}
-        <div>
-      {{ knp_pagination_render(products, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}
-    </div>
-      </div>
-    </div>
-  </section>
-</div>
-
+			<div class="col-12 mt-4">
+				<div class="wf-products-wrap">
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+						{% for product in products %}
+							<div class="col">
+								<div class="card h-100 shadow-sm border-0" style="background-color: #472d30; color: white">
+									<a href="{{ path('product_show', { id: product.id }) }}" class="d-block">
+										<img src="{{ asset(product.image) }}" alt="{{ product.name }}" class="wf-img-400" width="400" height="400" loading="lazy"/>
+									</a>
+									<div class="card-body d-flex flex-column">
+										<h3 class="h6 mb-2">{{ product.name }}</h3>
+										<div class="mt-auto fw-semibold text-price">
+											{{ product.price|number_format(2, '.', ',') }}
+											€
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				{# -- Changement : rendu de la pagination KNP #}
+				<div class="wf-pagination mt-3">
+					{{ knp_pagination_render(products,"@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig")}}
+				</div>
+			</div>
+		</section>
+	</div>
 
 {% endblock %}
-
-
-
 {% block footer %}
-    {{ parent() }}
+	{{ parent() }}
 {% endblock %}
-
