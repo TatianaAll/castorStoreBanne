@@ -6,9 +6,13 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
-.env
 /vendor/
 ###< symfony/framework-bundle ###
+
+# Ignore environment files
+.env
+
+# Ignore system-specific files
 .qodo
 .DS_Store
 

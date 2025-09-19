@@ -19,6 +19,19 @@ class ProductRepository extends ServiceEntityRepository
     //    /**
     //     * @return Product[] Returns an array of Product objects
     //     */
+
+    public function findBySearchQuery(?string $query): array
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        if ($query) {
+            $qb->where('p.name LIKE :q OR p.description LIKE :q')
+            ->setParameter('q', '%' . $query . '%');
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('p')
