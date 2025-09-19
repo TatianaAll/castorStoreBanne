@@ -1,29 +1,30 @@
-{% extends 'admin/baseAdmin.html.twig' %}
+{% extends './admin/baseAdmin.html.twig' %} 
+
 {% block title %}Liste des produits{% endblock %}
 
 {% block body %}
 <section class="container">
   <h1>Liste des produits disponibles sur le site</h1>
-  <table>
+  <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Nom du produit</th>
-        <th>Quantité en stock</th>
-        <th>Prix</th>
-        <th>Mettre à jour le produit</th>
-        <th>Supprimer le produit</th>
+        <th scope="col">ID</th>
+        <th scope="col">Nom du produit</th>
+        <th scope="col">Quantité en stock</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Mettre à jour le produit</th>
+        <th scope="col">Supprimer le produit</th>
       </tr>
     </thead>
     <tbody>
       {% for product in products %}
     <tr>
-      <td>{{product.id}}</td>
+      <td scope="row">{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.quantity}}</td>
-      <td>{{product.price}}</td>
-      <td><a href="{{path('update_product', {id:product.id}) }}">Mettre à jour</a></td>
-      <td><a href="{{path('delete_product', {id:product.id}) }}">Supprimer</a></td>
+      <td>{{product.price}}€</td>
+      <td><a class="btn btn-warning" href="{{path('update_product', {id:product.id}) }}">Mettre à jour</a></td>
+      <td><a class="btn btn-danger" href="{{path('delete_product', {id:product.id}) }}">Supprimer</a></td>
     </tr>
     {% endfor %}
     </tbody>
