@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{
+    product.name
+}}
+{% endblock %}
+{% block styles %}
+	{{ parent() }}
+	<style>
+		/* Container avec le texte */
+		.wf-panel {
+			background: #472d30 !important;
+			color: white !important;
+			border-radius: 0.75rem;
+			padding: 2rem;
+		}
+
+		/* Espace sous le contenu principal */
+		.wf-container {
+			margin-bottom: 3rem;
+		}
+
+		/* Responsive */
+		@media(min-width: 992px) {
+			.wf-panel {
+				padding: 4rem;
+			}
+		}
+
+		/* Image 600x600 */
+		.wf-img-600 {
+			width: 100%;
+			max-width: 600px;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			border-radius: 0.5rem;
+		}
+
+		/* Bouton acheté */
+		.btn-success {
+			background-color: #6f8f72 !important;
+			color: white !important;
+			font-size: 1.1rem;
+			padding: 0.75rem 1.5rem;
+		}
+		.btn-success:hover {
+			background-color: #5a705c !important;
+			color: white !important;
+		}
+
+		/* Bouton Ajoutez au panier */
+		.btn-outline-primary {
+			color: #e26d5c;
+			border: 2px solid #e26d5c;
+			font-size: 1.1rem;
+			padding: 0.75rem 1.5rem;
+		}
+		.btn-outline-primary:hover {
+			background-color: #e26d5c;
+			color: white;
+		}
+
+		/* Description texte réduit */
+		.wf-description {
+			font-size: 1.1rem;
+			line-height: 1.5;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<div class="wf-container">
+		<div
+			class="row g-4 align-items-stretch" style="min-height: 1px">
+			<!-- Image -->
+			<div class="col-12 col-lg-6 d-flex justify-content-center align-items-stretch">
+				<img src="{{ asset(product.image) }}" alt="{{ product.name }}" class="wf-img-600" style="height: 100%; max-height: 600px; object-fit: cover"/>
+			</div>
+
+			<!-- Texte -->
+			<div class="col-12 col-lg-6 d-flex align-items-stretch">
+				<div class="wf-panel w-100 d-flex flex-column justify-content-center" style="height: 100%">
+					<h1 class="h2 mb-3">{{ product.name }}</h1>
+					<p class="lead fw-semibold mb-4">{{ product.price }}
+						€</p>
+					<p class="mb-4 wf-description">{{ product.description }}</p>
+					<p class="mb-4">
+						<strong>Quantité restante :</strong>
+						{{ product.quantity }}
+					</p>
+					<div class="d-flex gap-2 flex-wrap">
+						<div class="d-flex gap-2 flex-wrap">
+                        {% if app.user %}
+							<a href="{{ path('create_basket', { id_user: app.user.id, id_product: product.id, redirect: 'basket' }) }}" class="btn btn-success">
+								Acheter
+							</a>
+							<a href="{{ path('create_basket', { id_product: product.id, id_user: app.user.id, redirect: 'product' }) }}" class="btn btn-outline-primary">
+                            Ajouter au panier
+                            </a>
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="btn btn-success"> 
+                                Se connecter pour acheter
+                            </a>
+                        {% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

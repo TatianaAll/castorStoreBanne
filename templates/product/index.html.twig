@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block styles %}
+	{{ parent() }}
+	<style>
+		.wf-container {
+			padding-top: 2.5rem;
+			padding-bottom: 2.5rem;
+		}
+
+		.wf-title-bar {
+			background: #472D30;
+			color: white;
+			border-radius: 0.5rem;
+			padding: 0.85rem 1.25rem;
+		}
+
+		.wf-img-400 {
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			border-radius: 0.5rem;
+		}
+
+		@supports not(aspect-ratio:1 / 1) {
+			.wf-img-400 {
+				height: 400px;
+			}
+		}
+
+		/* bouton Voir le produit */
+		.btn-primary {
+			background-color: #6F8F72;
+			border-color: #6F8F72;
+			color: white;
+			font-size: 1.1rem;
+			padding: 0.75rem 1.5rem;
+		}
+
+		.btn-primary:hover {
+			background-color: #5a705c;
+			border-color: #5a705c;
+			color: white;
+		}
+
+		/* Pagination custom */
+		.wf-pagination .pagination {
+			gap: 0.25rem; /* petit espace entre les boutons */
+		}
+
+		.wf-pagination .page-link {
+			color: #472D30; /* texte brun */
+			background-color: #ffe1a8; /* fond beige */
+			border: 1px solid #E26D5C; /* contour rouge-orangé */
+			border-radius: 0.5rem; /* arrondis doux */
+			transition: all 0.2s ease-in-out; /* animation fluide */
+		}
+
+		.wf-pagination .page-link:hover {
+			color: white;
+			background-color: #E26D5C; /* hover rouge-orangé */
+			border-color: #E26D5C;
+			transform: translateY(-2px); /* petit effet "lift" */
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+		}
+
+		.wf-pagination .page-item.active .page-link {
+			color: white;
+			background-color: #6F8F72; /* vert primaire */
+			border-color: #6F8F72;
+			font-weight: bold;
+		}
+
+		.wf-pagination .page-item.disabled .page-link {
+			color: #ccc;
+			background-color: #f5f5f5;
+			border-color: #ddd;
+			box-shadow: none;
+			cursor: not-allowed;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="wf-container">
+			<div class="row wf-section">
+				<div class="col-12 col-md-6 offset-md-3">
+					<div class="wf-title-bar text-center">
+						<h1 class="h4 m-0">{{ title is defined ? title : 'Produits' }}</h1>
+					</div>
+				</div>
+			</div>
+
+			{% for product in products %}
+				<div class="card mb-4 shadow-sm border-0" style="background-color: #472D30; color: white;">
+					<div class="row g-0 align-items-center">
+						<div class="col-12 col-md-5 col-lg-4 p-3">
+							<img src="{{ asset(product.image) }}" class="wf-img-400 w-100" alt="{{ product.name }}">
+						</div>
+						<div class="col-12 col-md-7 col-lg-8">
+							<div class="card-body">
+								<h1 class="">{{ product.name }}</h1>
+								<div class="text-primary fw-semibold mb-2">{{ product.price|number_format(2, '.', ',') }}
+									€</div>
+								<p class="mb-3">{{ product.description }}</p>
+								<a href="{{ path('product_show', { id: product.id }) }}" class="btn btn-primary">
+									Voir le produit
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<p class="text-center text-muted">Aucun produit pour le moment.</p>
+			{% endfor %}
+		</div>
+		<div class="wf-pagination">
+			{{ knp_pagination_render(products, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}
+		</div>
+	</main>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

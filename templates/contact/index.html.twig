@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block styles %}
+{{ parent() }}
+<style>
+  .wf-container { 
+    padding-top: 2.5rem; 
+    padding-bottom: 2.5rem; 
+  }
+
+  .wf-title-bar { 
+    background:#472D30; 
+    color: white; 
+    border-radius:.5rem; 
+    padding:.85rem 1.25rem; 
+  }
+
+  .wf-panel {
+    background: url("{{ asset('assets/wood-pattern.jpg') }}") repeat center center, #472D30;
+    border-radius: .75rem;
+    padding: 2rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1);
+  }
+
+
+  .btn-primary { 
+    background-color: #6F8F72; 
+    border: none; 
+    font-size: 1.1rem; 
+    padding: 0.75rem 1.5rem; 
+    border-radius: 0.5rem; 
+  }
+
+  .btn-primary:hover { 
+    background-color: #5a705c; 
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="wf-container">
+  <!-- Titre -->
+  <div class="row wf-section">
+    <div class="col-12 col-md-8 offset-md-2">
+      <div class="wf-title-bar text-center">
+        <h1 class="h3 m-0">Contactez-nous</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire de contact -->
+  <section id="contact" class="row wf-section">
+    <div class="col-12 col-md-8 offset-md-2">
+      <div class="wf-panel">
+        {{ form_start(contactForm, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+          <div class="form-floating mb-3">
+            {{ form_widget(contactForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+            {{ form_label(contactForm.name) }}
+            {{ form_errors(contactForm.name) }}
+          </div>
+
+          <div class="form-floating mb-3">
+            {{ form_widget(contactForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+            {{ form_label(contactForm.email) }}
+            {{ form_errors(contactForm.email) }}
+          </div>
+
+          <div class="form-floating mb-3">
+            {{ form_widget(contactForm.subject, {'attr': {'class': 'form-control', 'placeholder': 'Sujet'}}) }}
+            {{ form_label(contactForm.subject) }}
+            {{ form_errors(contactForm.subject) }}
+          </div>
+
+          <div class="form-floating mb-3">
+            {{ form_widget(contactForm.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre message', 'style': 'height: 150px;'}}) }}
+            {{ form_label(contactForm.message) }}
+            {{ form_errors(contactForm.message) }}
+          </div>
+
+          <button class="btn btn-primary w-100">Envoyer</button>
+
+        {{ form_end(contactForm) }}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

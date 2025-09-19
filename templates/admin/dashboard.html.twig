@@ -1,0 +1,41 @@
+{% extends 'admin/baseAdmin.html.twig' %} 
+{% block title %}Administrateur {% endblock %} 
+
+{% block body %}
+<section class="container">
+    <h1>Bienvenue sur le dashboard administrateur</h1>
+    <p>
+        Bienvenue
+        {{ app.user.name }}
+        !
+    </p>
+
+    <p>Rôles : {{ roles|join(', ') }}</p>
+
+    <div class="container-fluid d-flex">
+        <div class="card mx-2" style="width: 18rem">
+            <div class="card-body">
+                <h5 class="card-title">Nombre de consommateur :</h5>
+                <p class="card-text">{{ numberUser }}</p>
+                <a href="{{ path('all_users') }}">Voir tous les utilisateurs</a>
+            </div>
+        </div>
+
+        <div class="card mx-2" style="width: 18rem">
+            <div class="card-body">
+                <h5 class="card-title">Nombre de produits sur le site :</h5>
+                <p class="card-text">{{ numberProduct }}</p>
+                <a href="{{ path('all_products') }}">Voir tous les produits</a>
+            </div>
+        </div>
+
+        <div class="card mx-2" style="width: 18rem">
+            <div class="card-body">
+                <h5 class="card-title">Pour ajouter un nouveau produit :</h5>
+                <a href="{{ path('product_create') }}">ici</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
