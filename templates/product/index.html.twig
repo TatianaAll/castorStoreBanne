@@ -45,6 +45,42 @@
 			border-color: #5a705c;
 			color: white;
 		}
+
+		/* Pagination custom */
+		.wf-pagination .pagination {
+			gap: 0.25rem; /* petit espace entre les boutons */
+		}
+
+		.wf-pagination .page-link {
+			color: #472D30; /* texte brun */
+			background-color: #ffe1a8; /* fond beige */
+			border: 1px solid #E26D5C; /* contour rouge-orangé */
+			border-radius: 0.5rem; /* arrondis doux */
+			transition: all 0.2s ease-in-out; /* animation fluide */
+		}
+
+		.wf-pagination .page-link:hover {
+			color: white;
+			background-color: #E26D5C; /* hover rouge-orangé */
+			border-color: #E26D5C;
+			transform: translateY(-2px); /* petit effet "lift" */
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+		}
+
+		.wf-pagination .page-item.active .page-link {
+			color: white;
+			background-color: #6F8F72; /* vert primaire */
+			border-color: #6F8F72;
+			font-weight: bold;
+		}
+
+		.wf-pagination .page-item.disabled .page-link {
+			color: #ccc;
+			background-color: #f5f5f5;
+			border-color: #ddd;
+			box-shadow: none;
+			cursor: not-allowed;
+		}
 	</style>
 {% endblock %}
 
@@ -82,7 +118,7 @@
 				<p class="text-center text-muted">Aucun produit pour le moment.</p>
 			{% endfor %}
 		</div>
-		<div>
+		<div class="wf-pagination">
 			{{ knp_pagination_render(products, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}
 		</div>
 	</main>
